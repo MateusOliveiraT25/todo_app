@@ -15,8 +15,8 @@ class TodoListScreen extends StatelessWidget {
           'userId': userId,
           'name': taskName,
           'completed': false,
-          'createdAt': FieldValue.serverTimestamp(), // Registro de data de criação
-          'updatedAt': FieldValue.serverTimestamp(), // Registro de data de atualização
+          'createdAt': FieldValue.serverTimestamp(),
+          'updatedAt': FieldValue.serverTimestamp(),
         });
         _taskController.clear();
         ScaffoldMessenger.of(context).showSnackBar(
@@ -29,33 +29,29 @@ class TodoListScreen extends StatelessWidget {
         );
       }
     } else {
-      // Exibir uma mensagem de erro ou aviso se o nome for vazio ou só espaços
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Nome da tarefa não pode ser vazio ou apenas espaços!')),
       );
     }
   }
 
-  // Função para atualizar o status de conclusão de uma tarefa
   Future<void> _toggleTaskCompletion(DocumentSnapshot doc) async {
     try {
       await _tasksCollection.doc(doc.id).update({
         'completed': !doc['completed'],
-        'updatedAt': FieldValue.serverTimestamp(), // Atualiza data de modificação
+        'updatedAt': FieldValue.serverTimestamp(),
       });
     } catch (e) {
       print('Erro ao atualizar tarefa: $e');
-      // Tratar erro de forma apropriada
     }
   }
 
-  // Função para atualizar o nome da tarefa
   Future<void> _updateTaskName(DocumentSnapshot doc, String newName, BuildContext context) async {
-    if (newName.trim().isNotEmpty) {  // Verifica se o nome não é vazio ou só espaços
+    if (newName.trim().isNotEmpty) {
       try {
         await _tasksCollection.doc(doc.id).update({
           'name': newName,
-          'updatedAt': FieldValue.serverTimestamp(), // Atualiza data de modificação
+          'updatedAt': FieldValue.serverTimestamp(),
         });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Tarefa atualizada com sucesso!')),
@@ -73,7 +69,6 @@ class TodoListScreen extends StatelessWidget {
     }
   }
 
-  // Função para deletar uma tarefa
   Future<void> _deleteTask(DocumentSnapshot doc, BuildContext context) async {
     try {
       await _tasksCollection.doc(doc.id).delete();
@@ -88,7 +83,6 @@ class TodoListScreen extends StatelessWidget {
     }
   }
 
-  // Mostra um diálogo para editar o nome da tarefa
   void _editTaskName(BuildContext context, DocumentSnapshot doc) {
     final editController = TextEditingController(text: doc['name']);
     showDialog(
@@ -98,12 +92,12 @@ class TodoListScreen extends StatelessWidget {
           title: const Text('Editar Tarefa', style: TextStyle(color: Colors.white)),
           content: TextField(
             controller: editController,
-            style: const TextStyle(color: Colors.white), // Cor do texto do input (branco)
+            style: const TextStyle(color: Colors.white),
             decoration: const InputDecoration(
               labelText: 'Nome da Tarefa',
-              labelStyle: TextStyle(color: Colors.white),  // Cor do label (branco)
+              labelStyle: TextStyle(color: Colors.white),
               enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),  // Cor da borda (branca)
+                borderSide: BorderSide(color: Colors.white),
               ),
             ),
           ),
@@ -131,25 +125,16 @@ class TodoListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final userId = FirebaseAuth.instance.currentUser?.uid;
     return Scaffold(
-      backgroundColor: Color(0xFF9C4D97), // Cor de fundo mais clara (roxo)
+      backgroundColor: Color(0xFF9C4D97),
       appBar: AppBar(
-        title: const Text('Lista de Tarefas', style: TextStyle(color: Colors.white)), // Cor do título (branco)
-        backgroundColor: Color(0xFF9C4D97),  // Cor de fundo da AppBar (roxo claro)
+        title: const Text('Lista de Tarefas', style: TextStyle(color: Colors.white)),
+        backgroundColor: Color(0xFF9C4D97),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white), // Cor do ícone de voltar (branco)
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context); // Volta para a tela anterior
+            Navigator.pop(context);
           },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout, color: Colors.white), // Cor do ícone de logout (branco)
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-              Navigator.pushReplacementNamed(context, '/');
-            },
-          ),
-        ],
       ),
       body: Column(
         children: [
@@ -157,12 +142,12 @@ class TodoListScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: TextField(
               controller: _taskController,
-              style: const TextStyle(color: Colors.white), // Cor do texto do input (branco)
+              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 labelText: 'Nova Tarefa',
-                labelStyle: const TextStyle(color: Colors.white),  // Cor do label (branco)
+                labelStyle: const TextStyle(color: Colors.white),
                 suffixIcon: IconButton(
-                  icon: const Icon(Icons.add, color: Colors.white), // Cor do ícone de adicionar (branco)
+                  icon: const Icon(Icons.add, color: Colors.white),
                   onPressed: () => _addTask(_taskController.text, context),
                 ),
               ),
@@ -187,13 +172,13 @@ class TodoListScreen extends StatelessWidget {
                           decoration: task['completed']
                               ? TextDecoration.lineThrough
                               : TextDecoration.none,
-                          color: Colors.white, // Cor do texto da tarefa (branco)
+                          color: Colors.white,
                         ),
                       ),
                       leading: Checkbox(
                         value: task['completed'],
                         onChanged: (_) => _toggleTaskCompletion(task),
-                        activeColor: Colors.orange,  // Cor do checkbox (laranja)
+                        activeColor: Colors.orange,
                       ),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -212,6 +197,20 @@ class TodoListScreen extends StatelessWidget {
                   },
                 );
               },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton.icon(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.pushReplacementNamed(context, '/');
+              },
+              icon: Icon(Icons.logout, color: Colors.white),
+              label: Text('Sair', style: TextStyle(color: Colors.white)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red, // Cor do botão de logout
+              ),
             ),
           ),
         ],

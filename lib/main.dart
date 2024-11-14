@@ -19,7 +19,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Todo App',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      debugShowCheckedModeBanner: false, // Desativa o banner de debug
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        // Aqui você pode configurar o tema para o app conforme desejado
+      ),
       initialRoute: '/',
       routes: {
         '/': (context) => LoginScreen(),

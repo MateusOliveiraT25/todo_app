@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "914680086880",
+    "project_id": "todolist-flutter-saeb",
+    "storage_bucket": "todolist-flutter-saeb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914680086880:android:08c0d4d587cf0b49709e05",
+        "android_client_info": {
+          "package_name": "com.example.todo_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFEhz1h_2dz5iStfFcT2pX5VDnWjX7ylE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

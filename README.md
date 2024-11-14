@@ -20,27 +20,24 @@ Este é um aplicativo de lista de tarefas desenvolvido em Flutter com integraç�
 ## Como Usar
 
 ### Pré-requisitos
-1. Flutter instalado: [Instalar Flutter](https://docs.flutter.dev/get-started/install)
-2. Configuração do Firebase para Flutter: [Configurar Firebase](https://firebase.google.com/docs/flutter/setup)
+
+1. **Flutter instalado**: [Instalar Flutter](https://docs.flutter.dev/get-started/install)
+2. **Configuração do Firebase para Flutter**: [Configurar Firebase](https://firebase.google.com/docs/flutter/setup)
 
 ### Passos para Rodar o Projeto
+
 1. Clone este repositório:
    ```bash
    git clone https://github.com/seu_usuario/todo_app.git
-   Navegue até a pasta do projeto:
-cd todo_app
-Instale as dependências:
-flutter pub get
-Configure o Firebase para o projeto:
 
-Siga as instruções de configuração do Firebase para adicionar um projeto iOS e Android.
-Adicione o arquivo google-services.json para Android e GoogleService-Info.plist para iOS na pasta apropriada.
-Atualize o arquivo android/build.gradle e android/app/build.gradle para ativar o Firebase.
-
-Rode o aplicativo:
-
+2. Navegue até a pasta do projeto:
+   cd todo_app
+3. Navegue até a pasta do projeto:
+   flutter pub get
+4. Configure o Firebase para o projeto:
+Siga as instruções do Firebase para adicionar um projeto iOS e Android.
+Adicione o arquivo google-services.json para Android e GoogleService-Info.plist para iOS nas pastas adequadas.
+Atualize os arquivos android/build.gradle e android/app/build.gradle para ativar o Firebase no projeto.
+5. Execute o aplicativo:
 flutter run
-Estrutura do Projeto
-lib/: Contém o código principal do aplicativo.
-main.dart: Arquivo inicial do aplicativo.
-screens/todo_list_screen.dart: Tela principal com a lista de tarefas e as funcionalidades CRUD.
+

@@ -28,7 +28,7 @@ Este é um aplicativo de lista de tarefas desenvolvido em Flutter com integraç�
 
 1. Clone este repositório:
    ```bash
-  git clone https://github.com/MateusOliveiraT25/todo_app.git
+git clone https://github.com/MateusOliveiraT25/todo_app.git
 
 2. Navegue até a pasta do projeto:
      ```bash

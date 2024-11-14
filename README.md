@@ -33,7 +33,7 @@ Este é um aplicativo de lista de tarefas desenvolvido em Flutter com integraç�
 2. Navegue até a pasta do projeto:
      ```bash
    cd todo_app
-4. Navegue até a pasta do projeto:
+4. Instale as dependências:
     ```bash
    flutter pub get
 6. Configure o Firebase para o projeto:

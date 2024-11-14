@@ -40,6 +40,6 @@ Siga as instruções do Firebase para adicionar um projeto iOS e Android.
 Adicione o arquivo google-services.json para Android e GoogleService-Info.plist para iOS nas pastas adequadas.
 Atualize os arquivos android/build.gradle e android/app/build.gradle para ativar o Firebase no projeto.
 6. Execute o aplicativo:
-     ```bash
+  ```bash
 flutter run
 

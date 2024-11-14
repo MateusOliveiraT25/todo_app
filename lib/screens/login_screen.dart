@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
-import 'home_screen.dart';  // Navegar para HomeScreen após login
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -14,19 +13,19 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final AuthService _authService = AuthService();
-  bool _isLoading = false;  // Flag para indicar se o login está em andamento
+  bool _isLoading = false; // Flag para indicar se o login está em andamento
 
   Future<void> _login(BuildContext context) async {
     setState(() {
-      _isLoading = true;  // Ativa o carregamento ao iniciar o login
+      _isLoading = true; // Ativa o carregamento ao iniciar o login
     });
 
     try {
       await _authService.signIn(_emailController.text, _passwordController.text);
-      Navigator.pushReplacementNamed(context, '/home');  // Navegar para a HomeScreen usando rotas nomeadas
+      Navigator.pushReplacementNamed(context, '/todo'); // Navegar diretamente para a TodoListScreen
     } catch (e) {
       setState(() {
-        _isLoading = false;  // Desativa o carregamento em caso de erro
+        _isLoading = false; // Desativa o carregamento em caso de erro
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Erro ao fazer login: ${e.toString()}')),
@@ -37,10 +36,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF9C4D97), // Cor de fundo (roxo claro)
+      backgroundColor: const Color(0xFF9C4D97), // Cor de fundo (roxo claro)
       appBar: AppBar(
-        title: const Text('Login', style: TextStyle(color: Colors.white)),  // Cor do título na AppBar
-        backgroundColor: Color(0xFF9C4D97), // Cor da AppBar (roxo claro)
+        title: const Text('Login', style: TextStyle(color: Colors.white)), // Cor do título na AppBar
+        backgroundColor: const Color(0xFF9C4D97), // Cor da AppBar (roxo claro)
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -79,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 20),
             _isLoading
-                ? const Center(child: CircularProgressIndicator(color: Colors.white))  // Exibe o indicador de carregamento
+                ? const Center(child: CircularProgressIndicator(color: Colors.white)) // Exibe o indicador de carregamento
                 : ElevatedButton(
                     onPressed: () => _login(context),
                     style: ElevatedButton.styleFrom(
@@ -92,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/register');  // Navegar para RegisterScreen usando rotas nomeadas
+                Navigator.pushNamed(context, '/register'); // Navegar para RegisterScreen usando rotas nomeadas
               },
               child: const Text(
                 'Criar Conta',

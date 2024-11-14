@@ -34,12 +34,13 @@ Este é um aplicativo de lista de tarefas desenvolvido em Flutter com integraç�
      ```bash
    cd todo_app
 4. Navegue até a pasta do projeto:
+    ```bash
    flutter pub get
-5. Configure o Firebase para o projeto:
+6. Configure o Firebase para o projeto:
 Siga as instruções do Firebase para adicionar um projeto iOS e Android.
 Adicione o arquivo google-services.json para Android e GoogleService-Info.plist para iOS nas pastas adequadas.
 Atualize os arquivos android/build.gradle e android/app/build.gradle para ativar o Firebase no projeto.
-6. Execute o aplicativo:
+7. Execute o aplicativo:
   ```bash
 flutter run
 
